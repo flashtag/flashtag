@@ -9,18 +9,13 @@ defmodule FlashtagWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", FlashtagWeb do
-    pipe_through :browser # Use the default browser stack
-
+    pipe_through [:browser]
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", FlashtagWeb do
-  #   pipe_through :api
-  # end
+  scope "/api" do
+    pipe_through []
+    forward "/", FlashtagAPI.Router
+  end
 end

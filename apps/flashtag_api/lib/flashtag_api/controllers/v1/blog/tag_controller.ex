@@ -1,10 +1,10 @@
-defmodule FlashtagAPIWeb.TagController do
-  use FlashtagAPIWeb, :controller
+defmodule FlashtagAPI.V1.Blog.TagController do
+  use FlashtagAPI, :controller
 
   alias Flashtag.Blog
   alias Flashtag.Blog.Tag
 
-  action_fallback FlashtagAPIWeb.FallbackController
+  action_fallback FlashtagAPI.FallbackController
 
   def index(conn, _params) do
     tags = Blog.list_tags()
@@ -15,7 +15,7 @@ defmodule FlashtagAPIWeb.TagController do
     with {:ok, %Tag{} = tag} <- Blog.create_tag(tag_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", tag_path(conn, :show, tag))
+      |> put_resp_header("location", v1_blog_tag_path(conn, :show, tag))
       |> render("show.json", tag: tag)
     end
   end

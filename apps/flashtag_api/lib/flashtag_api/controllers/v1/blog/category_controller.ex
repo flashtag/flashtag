@@ -1,10 +1,10 @@
-defmodule FlashtagAPIWeb.CategoryController do
-  use FlashtagAPIWeb, :controller
+defmodule FlashtagAPI.V1.Blog.CategoryController do
+  use FlashtagAPI, :controller
 
   alias Flashtag.Blog
   alias Flashtag.Blog.Category
 
-  action_fallback FlashtagAPIWeb.FallbackController
+  action_fallback FlashtagAPI.FallbackController
 
   def index(conn, _params) do
     categories = Blog.list_categories()
@@ -15,7 +15,7 @@ defmodule FlashtagAPIWeb.CategoryController do
     with {:ok, %Category{} = category} <- Blog.create_category(category_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", category_path(conn, :show, category))
+      |> put_resp_header("location", v1_blog_category_path(conn, :show, category))
       |> render("show.json", category: category)
     end
   end

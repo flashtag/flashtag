@@ -1,8 +1,9 @@
 defmodule Flashtag.Blog.Tag do
   use Ecto.Schema
-  import Ecto.Changeset
-  alias Flashtag.Blog.Tag
 
+  import Ecto.Changeset
+
+  alias Flashtag.Blog.Tag
 
   schema "tags" do
     field :description, :string

@@ -1,13 +1,12 @@
-defmodule FlashtagAPIWeb.CategoryView do
-  use FlashtagAPIWeb, :view
-  alias FlashtagAPIWeb.CategoryView
+defmodule FlashtagAPI.V1.Blog.CategoryView do
+  use FlashtagAPI, :view
 
   def render("index.json", %{categories: categories}) do
-    %{data: render_many(categories, CategoryView, "category.json")}
+    %{data: render_many(categories, __MODULE__, "category.json")}
   end
 
   def render("show.json", %{category: category}) do
-    %{data: render_one(category, CategoryView, "category.json")}
+    %{data: render_one(category, __MODULE__, "category.json")}
   end
 
   def render("category.json", %{category: category}) do

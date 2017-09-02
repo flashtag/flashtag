@@ -5,17 +5,17 @@ defmodule FlashtagAPI.ErrorViewTest do
   import Phoenix.View
 
   test "renders 404.json" do
-    assert render(FlashtagNoHtmlWeb.ErrorView, "404.json", []) ==
+    assert render(FlashtagAPI.ErrorView, "404.json", []) ==
             %{errors: %{detail: "Page not found"}}
   end
 
   test "render 500.json" do
-    assert render(FlashtagNoHtmlWeb.ErrorView, "500.json", []) ==
+    assert render(FlashtagAPI.ErrorView, "500.json", []) ==
             %{errors: %{detail: "Internal server error"}}
   end
 
   test "render any other" do
-    assert render(FlashtagNoHtmlWeb.ErrorView, "505.json", []) ==
+    assert render(FlashtagAPI.ErrorView, "505.json", []) ==
             %{errors: %{detail: "Internal server error"}}
   end
 end

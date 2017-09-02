@@ -1,10 +1,10 @@
-defmodule FlashtagAPIWeb.SeriesController do
-  use FlashtagAPIWeb, :controller
+defmodule FlashtagAPI.V1.Blog.SeriesController do
+  use FlashtagAPI, :controller
 
   alias Flashtag.Blog
   alias Flashtag.Blog.Series
 
-  action_fallback FlashtagAPIWeb.FallbackController
+  action_fallback FlashtagAPI.FallbackController
 
   def index(conn, _params) do
     series = Blog.list_series()
@@ -15,7 +15,7 @@ defmodule FlashtagAPIWeb.SeriesController do
     with {:ok, %Series{} = series} <- Blog.create_series(series_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", series_path(conn, :show, series))
+      |> put_resp_header("location", v1_blog_series_path(conn, :show, series))
       |> render("show.json", series: series)
     end
   end

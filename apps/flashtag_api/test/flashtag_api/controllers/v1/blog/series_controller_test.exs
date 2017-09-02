@@ -1,5 +1,5 @@
-defmodule FlashtagAPIWeb.SeriesControllerTest do
-  use FlashtagAPIWeb.ConnCase
+defmodule FlashtagAPI.V1.Blog.SeriesControllerTest do
+  use FlashtagAPI.ConnCase
 
   alias Flashtag.Blog
   alias Flashtag.Blog.Series
@@ -19,17 +19,17 @@ defmodule FlashtagAPIWeb.SeriesControllerTest do
 
   describe "index" do
     test "lists all series", %{conn: conn} do
-      conn = get conn, series_path(conn, :index)
+      conn = get conn, v1_blog_series_path(conn, :index)
       assert json_response(conn, 200)["data"] == []
     end
   end
 
   describe "create series" do
     test "renders series when data is valid", %{conn: conn} do
-      conn = post conn, series_path(conn, :create), series: @create_attrs
+      conn = post conn, v1_blog_series_path(conn, :create), series: @create_attrs
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get conn, series_path(conn, :show, id)
+      conn = get conn, v1_blog_series_path(conn, :show, id)
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         "description" => "some description",
@@ -38,7 +38,7 @@ defmodule FlashtagAPIWeb.SeriesControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, series_path(conn, :create), series: @invalid_attrs
+      conn = post conn, v1_blog_series_path(conn, :create), series: @invalid_attrs
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -47,10 +47,10 @@ defmodule FlashtagAPIWeb.SeriesControllerTest do
     setup [:create_series]
 
     test "renders series when data is valid", %{conn: conn, series: %Series{id: id} = series} do
-      conn = put conn, series_path(conn, :update, series), series: @update_attrs
+      conn = put conn, v1_blog_series_path(conn, :update, series), series: @update_attrs
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get conn, series_path(conn, :show, id)
+      conn = get conn, v1_blog_series_path(conn, :show, id)
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         "description" => "some updated description",
@@ -59,7 +59,7 @@ defmodule FlashtagAPIWeb.SeriesControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, series: series} do
-      conn = put conn, series_path(conn, :update, series), series: @invalid_attrs
+      conn = put conn, v1_blog_series_path(conn, :update, series), series: @invalid_attrs
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -68,10 +68,10 @@ defmodule FlashtagAPIWeb.SeriesControllerTest do
     setup [:create_series]
 
     test "deletes chosen series", %{conn: conn, series: series} do
-      conn = delete conn, series_path(conn, :delete, series)
+      conn = delete conn, v1_blog_series_path(conn, :delete, series)
       assert response(conn, 204)
       assert_error_sent 404, fn ->
-        get conn, series_path(conn, :show, series)
+        get conn, v1_blog_series_path(conn, :show, series)
       end
     end
   end

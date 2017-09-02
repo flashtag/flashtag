@@ -16,8 +16,12 @@ defmodule Flashtag.Blog.Post do
     field :slug, :string
     field :subtitle, :string
     field :title, :string
-    field :category_id, :id
-    field :user_id, :id
+
+    belongs_to :series, Flashtag.Blog.Series
+    belongs_to :category, Flashtag.Blog.Category
+    many_to_many :tags, Flashtag.Blog.Tag, join_through: "post_tag"
+
+    belongs_to :user, Flashtag.Accounts.User
 
     timestamps()
   end
@@ -25,7 +29,8 @@ defmodule Flashtag.Blog.Post do
   @required_fields [:title, :slug]
   @optional_fields [
     :subtitle, :body, :description, :cover_photo, :photo, :is_published,
-    :published_at, :unpublished_at,
+    :published_at, :unpublished_at, :series_id, :category_id,
+    :user_id,
   ]
 
   @doc false

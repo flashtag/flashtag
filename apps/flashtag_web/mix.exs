@@ -46,6 +46,7 @@ defmodule FlashtagWeb.Mixfile do
       {:cowboy, "~> 1.0"},
 
       {:flashtag, in_umbrella: true},
+      {:flashtag_api, in_umbrella: true},
     ]
   end
 

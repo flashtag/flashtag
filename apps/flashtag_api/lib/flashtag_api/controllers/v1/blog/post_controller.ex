@@ -1,10 +1,10 @@
-defmodule FlashtagAPIWeb.PostController do
-  use FlashtagAPIWeb, :controller
+defmodule FlashtagAPI.V1.Blog.PostController do
+  use FlashtagAPI, :controller
 
   alias Flashtag.Blog
   alias Flashtag.Blog.Post
 
-  action_fallback FlashtagAPIWeb.FallbackController
+  action_fallback FlashtagAPI.FallbackController
 
   def index(conn, _params) do
     posts = Blog.list_posts()
@@ -15,7 +15,7 @@ defmodule FlashtagAPIWeb.PostController do
     with {:ok, %Post{} = post} <- Blog.create_post(post_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", post_path(conn, :show, post))
+      |> put_resp_header("location", v1_blog_post_path(conn, :show, post))
       |> render("show.json", post: post)
     end
   end

@@ -1,13 +1,12 @@
-defmodule FlashtagAPIWeb.TagView do
-  use FlashtagAPIWeb, :view
-  alias FlashtagAPIWeb.TagView
+defmodule FlashtagAPI.V1.Blog.TagView do
+  use FlashtagAPI, :view
 
   def render("index.json", %{tags: tags}) do
-    %{data: render_many(tags, TagView, "tag.json")}
+    %{data: render_many(tags, __MODULE__, "tag.json")}
   end
 
   def render("show.json", %{tag: tag}) do
-    %{data: render_one(tag, TagView, "tag.json")}
+    %{data: render_one(tag, __MODULE__, "tag.json")}
   end
 
   def render("tag.json", %{tag: tag}) do

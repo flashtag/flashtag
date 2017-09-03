@@ -1,20 +1,29 @@
 # FlashtagAPI
 
-To start your Phoenix server:
+To use your app's Router to forward the request to the Flashtag API Router:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+Apply your own pipelines before forwarding. This is where you would add
+things like auth.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```elixir
+defmodule MyApp.Router do
+  use MyApp, :router
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+  # ...
 
-## Learn more
+  pipeline :api do
+    # API plugs
+  end
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+  pipeline :api_auth do
+    # API Auth plugs
+  end
+
+  # ...
+
+  scope "/api" do
+    pipe_through [:api, :api_auth]
+    forward "/", FlashtagAPI.Plugs.Forward
+  end
+end
+```

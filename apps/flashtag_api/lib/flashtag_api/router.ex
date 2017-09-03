@@ -5,7 +5,7 @@ defmodule FlashtagAPI.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api/v1/", FlashtagAPI.V1, as: :v1 do
+  scope "/api/v1", FlashtagAPI.V1, as: :v1 do
     pipe_through [:api]
 
     scope "/accounts", as: :accounts do

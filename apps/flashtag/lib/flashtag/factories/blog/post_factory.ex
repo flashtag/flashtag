@@ -11,7 +11,7 @@ defmodule Flashtag.Blog.PostFactory do
           cover_photo: "https://pixl.it",
           photo: "https://pixl.it",
           is_published: true,
-          published_at: ~D"2016-11-15",
+          published_at: ~N[2017-08-15 14:00:00.000000],
           unpublished_at: nil,
           series: build(:blog_series),
           category: build(:blog_category),

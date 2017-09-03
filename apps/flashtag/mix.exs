@@ -39,7 +39,7 @@ defmodule Flashtag.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.1"},
 
-      {:ex_machina, "~> 2.1", only: :test},
+      {:ex_machina, "~> 2.1"},
     ]
   end
 

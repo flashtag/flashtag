@@ -1,6 +1,8 @@
 defmodule FlashtagWeb.Router do
   use FlashtagWeb, :router
 
+  ## Pipelines
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -16,6 +18,8 @@ defmodule FlashtagWeb.Router do
   pipeline :api_auth do
     # API Auth plugs
   end
+
+  ## Scopes
 
   scope "/", FlashtagWeb do
     pipe_through [:browser]

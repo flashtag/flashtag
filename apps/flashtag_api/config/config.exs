@@ -8,7 +8,8 @@ use Mix.Config
 # General application configuration
 config :flashtag_api,
   namespace: FlashtagAPI,
-  ecto_repos: [Flashtag.Repo]
+  ecto_repos: [Flashtag.Repo],
+  in_umbrella: true
 
 # Configures the endpoint
 config :flashtag_api, FlashtagAPI.Endpoint,

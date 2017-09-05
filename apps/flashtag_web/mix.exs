@@ -45,9 +45,13 @@ defmodule FlashtagWeb.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
 
-      {:flashtag, in_umbrella: true},
-      {:flashtag_api, in_umbrella: true},
+      {:flashtag, ">= 0.0.0", in_umbrella: umbrella?()},
+      {:flashtag_api, ">= 0.0.0", in_umbrella: umbrella?()},
     ]
+  end
+
+  defp umbrella? do
+    Application.get_env(:flashtag_web, :in_umbrella, false)
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

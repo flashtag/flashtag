@@ -20,6 +20,9 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
+config :flashtag_auth,
+  in_umbrella: true
+
 config :ueberauth, Ueberauth,
   providers: [
     identity: {Ueberauth.Strategy.Identity, [callback_methods: ["POST"]]},

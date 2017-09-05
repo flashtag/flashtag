@@ -31,7 +31,11 @@ defmodule FlashtagAuth.Mixfile do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
 
-      {:flashtag, in_umbrella: true},
+      {:flashtag, ">= 0.0.0", in_umbrella: umbrella?()},
     ]
+  end
+
+  defp umbrella? do
+    Application.get_env(:flashtag_auth, :in_umbrella, false)
   end
 end

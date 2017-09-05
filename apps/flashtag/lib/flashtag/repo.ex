@@ -1,4 +1,6 @@
 defmodule Flashtag.Repo do
+  @moduledoc false
+
   use Ecto.Repo, otp_app: :flashtag
 
   @doc """

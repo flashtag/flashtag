@@ -1,4 +1,5 @@
 defmodule Flashtag.Accounts.UserFactory do
+  @moduledoc false
   defmacro __using__(_opts) do
     quote do
       def accounts_user_factory do

@@ -1,4 +1,6 @@
 defmodule Flashtag.Blog.Category do
+  @moduledoc false
+
   use Ecto.Schema
 
   import Ecto.Changeset

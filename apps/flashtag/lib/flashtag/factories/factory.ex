@@ -1,4 +1,6 @@
 defmodule Flashtag.Factory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: Flashtag.Repo
 
   use Flashtag.Accounts.UserFactory

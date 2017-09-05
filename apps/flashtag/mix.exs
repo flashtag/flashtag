@@ -13,7 +13,11 @@ defmodule Flashtag.Mixfile do
       elixirc_paths: elixirc_paths(Mix.env),
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      package: package(),
+      source_url: "https://github.com/flashtag/flashtag_umbrella",
+      name: "Flashtag CMS data",
     ]
   end
 
@@ -40,6 +44,8 @@ defmodule Flashtag.Mixfile do
       {:ecto, "~> 2.1"},
 
       {:ex_machina, "~> 2.1"},
+
+      {:ex_doc, ">= 0.0.0", only: :dev},
     ]
   end
 
@@ -54,6 +60,21 @@ defmodule Flashtag.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
+  end
+
+  defp description do
+    """
+    Flashtag CMS
+    """
+  end
+
+  defp package do
+    [
+      name: :flashtag,
+      maintainers: ["Ryan Winchester"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/flashtag/flashtag_umbrella"},
     ]
   end
 end

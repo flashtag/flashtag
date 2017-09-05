@@ -1,4 +1,5 @@
 defmodule Flashtag.Blog.TagFactory do
+  @moduledoc false
   defmacro __using__(_opts) do
     quote do
       def blog_tag_factory do
